@@ -11,8 +11,6 @@ LEFT JOIN Addresses a ON e.AddressID=a.AddressID
 LEFT JOIN Towns t ON t.TownID=a.TownID
 ORDER BY e.FirstName, e.LastName
 
-
-
 -------
 
 SELECT * FROM Employees e
@@ -21,22 +19,18 @@ WHERE e.HireDate >'1999-01-01' AND (d.Name ='Sales' OR d.Name ='Finance')
 
 -------
 
-
-
 SELECT TOP(1)
   (SELECT AVG(Salary) FROM Employees WHERE DepartmentID=Departments.DepartmentID) AS AvgSalary
 FROM Departments
 ORDER BY AvgSalary 
 
-
-
 --PO1
+
 USE SoftUni
 
 SELECT TOP(5) e.EmployeeID,e.JobTitle,a.AddressID,a.AddressText FROM Employees e
 JOIN Addresses a ON e.AddressID=a.AddressID
 ORDER BY a.AddressID
-
 
 --PO2
 
@@ -62,15 +56,12 @@ JOIN Departments d ON e.DepartmentID=d.DepartmentID
 WHERE e.Salary>15000
 ORDER BY d.DepartmentID
 
-
 --PO5
 
 SELECT TOP(3) e.EmployeeID,e.FirstName FROM Employees e
 LEFT JOIN EmployeesProjects ep ON e.EmployeeID=ep.EmployeeID
 WHERE ep.ProjectID IS NULL
 ORDER BY e.EmployeeID
-
-
 
 --PO6
 
@@ -81,13 +72,11 @@ ORDER BY e.HireDate
 
 --PO7
 
-
 SELECT TOP(5) e.EmployeeID,e.FirstName,p.Name FROM Employees e
 JOIN EmployeesProjects ep ON e.EmployeeID=ep.EmployeeID
 JOIN Projects p ON ep.ProjectID=p.ProjectID
 WHERE p.StartDate > '2002-08-13' AND p.EndDate IS NULL
 ORDER BY e.EmployeeID
-
 
 --PO8
 
@@ -95,7 +84,6 @@ SELECT e.EmployeeID,e.FirstName, IIF(p.StartDate>='2005-01-01',NULL,p.Name) as P
 JOIN EmployeesProjects ep ON e.EmployeeID=ep.EmployeeID --AND e.EmployeeID=24
 JOIN Projects p ON ep.ProjectID=p.ProjectID
 WHERE e.EmployeeID=24
-
 
 --PO9
 
@@ -112,12 +100,12 @@ JOIN Departments d ON e2.DepartmentID=d.DepartmentID
 ORDER BY e2.EmployeeID
 
 --PO11
+
 USE SoftUni
 
 SELECT TOP(1) AVG(Salary) AS MinAverageSalary FROM Employees
 GROUP BY DepartmentID
 ORDER BY AVG(Salary)
-
 
 --PO12
 
@@ -140,17 +128,13 @@ GROUP BY c.CountryCode
 
 --PO14
 
-
-
 SELECT TOP(5) c.CountryName,r.RiverName FROM Countries c
 LEFT JOIN CountriesRivers cr ON c.CountryCode=cr.CountryCode
 LEFT JOIN Rivers r ON cr.RiverId=r.Id
 WHERE C.ContinentCode='AF'
 ORDER BY c.CountryName
 
-
 --PO15
-
 
 SELECT ContinentCode, CurrencyCode,CurrencyUsage FROM (SELECT ContinentCode,CurrencyCode,COUNT(CurrencyCode) AS CurrencyUsage, 
 DENSE_RANK() OVER (PARTITION BY ContinentCode
@@ -169,9 +153,7 @@ LEFT JOIN MountainsCountries mc ON c.CountryCode=mc.CountryCode
 LEFT JOIN Mountains m ON mc.MountainId=m.Id
 WHERE m.Id IS NULL
 
-
 --PO17
-
 
 SELECT TOP(5) c.CountryName, MAX(p.Elevation) as HighestPeakElevation, MAX(r.Length) as LongestRiverLength FROM Countries c
 LEFT JOIN MountainsCountries mc ON c.CountryCode=mc.CountryCode
@@ -181,6 +163,5 @@ LEFT JOIN CountriesRivers cr ON c.CountryCode=cr.CountryCode
 LEFT JOIN Rivers r ON cr.RiverId=r.Id
 GROUP BY c.CountryName
 ORDER BY HighestPeakElevation DESC,LongestRiverLength DESC,c.CountryName
-
 
 ---------

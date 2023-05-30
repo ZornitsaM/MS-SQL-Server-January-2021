@@ -1,12 +1,9 @@
 
-
 --PO1
 
 CREATE DATABASE WMS
 drop database WMS
 USE WMS
-
-
 
 CREATE TABLE Clients
 (
@@ -14,9 +11,7 @@ CREATE TABLE Clients
  FirstName VARCHAR(50),
  LastName VARCHAR(50),
  Phone CHAR(12) NOT NULL
-
 )
-
 
 CREATE TABLE Mechanics
 (
@@ -24,9 +19,7 @@ MechanicId	SMALLINT PRIMARY KEY IDENTITY,
 FirstName VARCHAR(50),
 LastName VARCHAR(50),
 Address	 VARCHAR(255),
-
 )
-
 
 CREATE TABLE Models
 (
@@ -46,7 +39,6 @@ FinishDate	DATE,
 CONSTRAINT CHK_Status CHECK (Status='Pending' OR Status='In Progress' OR Status='Finished')
 )
 
-
 CREATE TABLE Orders
 (
 	OrderId SMALLINT PRIMARY KEY IDENTITY,
@@ -61,7 +53,6 @@ CREATE TABLE Vendors
 	Name VARCHAR(50) UNIQUE
 )
 
-
 CREATE TABLE Parts
 (
 	PartId	SMALLINT PRIMARY KEY IDENTITY,
@@ -70,9 +61,7 @@ CREATE TABLE Parts
 	Price DECIMAL(6,2) CHECK(Price>0), 
 	VendorId SMALLINT FOREIGN KEY REFERENCES Vendors(VendorId),
 	StockQty SMALLINT DEFAULT 0 CHECK (StockQty>=0)
-
 )
-
 
 CREATE TABLE OrderParts
 (
@@ -90,7 +79,6 @@ CREATE TABLE PartsNeeded
 	CONSTRAINT PK_Need PRIMARY KEY (JobId,PartId)
 )
 
-
 --PO2
 
 INSERT INTO Clients(FirstName,LastName,Phone)
@@ -100,7 +88,6 @@ VALUES('Teri','Ennaco','570-889-5187'),('Merlyn','Lawler','201-588-7810'),('Geor
 INSERT INTO Parts (SerialNumber,Description,Price,VendorId)
 VALUES ('WP8182119','Door Boot Seal',117.86,2),('W10780048','Suspension Rod',42.81,1),
 ('W10841140','Silicone Adhesive ',6.77,4),('WPY055980','High Temperature Adhesive',13.94,3)
-
 
 --PO3
 
@@ -130,7 +117,6 @@ JOIN Clients c ON j.ClientId=c.ClientId
 where j.Status != 'Finished'
 ORDER BY ABS(DATEDIFF(day,'2017-04-24',j.IssueDate)) DESC,c.ClientId
 
-
 --PO7
 
 SELECT Mechanic,[Average Days] FROM(
@@ -139,9 +125,7 @@ JOIN Mechanics m ON j.MechanicId=m.MechanicId
 GROUP BY  m.MechanicId, m.FirstName,m.LastName
 ) AS K
 
-
 --PO8
-
 
 SELECT m.FirstName+' '+m.LastName as Available FROM Mechanics AS m
 LEFT JOIN Jobs j ON m.MechanicId=j.MechanicId
@@ -159,7 +143,6 @@ ORDER BY m.MechanicId
 
 --PO9
 
-
 SELECT j.JobId, ISNULL(SUM(p.Price*op.Quantity),0) AS Total FROM Jobs j
 JOIN Orders o ON j.JobId=o.JobId
 JOIN OrderParts op ON o.OrderId=op.OrderId
@@ -170,7 +153,6 @@ ORDER BY SUM(p.Price*op.Quantity) DESC,j.JobId
 
 --PO10
 
-
 SELECT p.PartId,p.Description,pn.Quantity as Required,p.StockQty as 'In Stock',IIF(o.Delivered=0,op.Quantity,0) as Ordered FROM Parts p
 LEFT JOIN PartsNeeded pn ON p.PartId=pn.PartId
 LEFT JOIN OrderParts op ON pn.PartId=op.PartId
@@ -178,8 +160,6 @@ LEFT JOIN Jobs j ON pn.JobId=j.JobId
 LEFT JOIN Orders o ON o.JobId=j.JobId
 WHERE j.Status!='Finished' AND p.StockQty +IIF(o.Delivered=0,op.Quantity,0)<pn.Quantity
 ORDER BY p.PartId
-
-
 
 --PO11
 
@@ -224,7 +204,6 @@ BEGIN
 END
 
 --PO12
-
 
 CREATE FUNCTION udf_GetCost(@JobId INT)
 RETURNS DECIMAL(15,2)

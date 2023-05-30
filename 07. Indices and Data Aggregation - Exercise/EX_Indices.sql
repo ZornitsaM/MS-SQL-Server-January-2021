@@ -6,11 +6,9 @@ USE Gringotts
 
 SELECT COUNT(*) AS Count FROM WizzardDeposits
 
-
 --PO2
 SELECT TOP(1) MagicWandSize AS LongestMagicWand FROM WizzardDeposits
 ORDER BY MagicWandSize DESC
-
 
 --PO3
 
@@ -34,17 +32,13 @@ ORDER BY AVG(MagicWandSize)
 SELECT DepositGroup, SUM(DepositAmount) AS TotalSum FROM WizzardDeposits
 GROUP BY DepositGroup
 
-
 --PO6
-
 
 SELECT DepositGroup, SUM(DepositAmount) AS TotalSum FROM WizzardDeposits
 WHERE MagicWandCreator='Ollivander family'
 GROUP BY DepositGroup
 
-
 --PO7
-
 
 SELECT DepositGroup, SUM(DepositAmount) AS TotalSum FROM WizzardDeposits
 WHERE MagicWandCreator='Ollivander family'
@@ -52,16 +46,13 @@ GROUP BY DepositGroup
 HAVING SUM(DepositAmount)<150000
 ORDER BY SUM(DepositAmount) DESC
 
-
 --PO8
 
 SELECT DepositGroup, MagicWandCreator, MIN(DepositCharge) AS MinDepositCharge FROM WizzardDeposits
 GROUP BY DepositGroup,MagicWandCreator
 ORDER BY MagicWandCreator,DepositGroup
 
-
 --PO9
-
 
 SELECT AgeGroup,COUNT(*) AS WizardCount FROM(
 SELECT
@@ -77,9 +68,7 @@ END AS AgeGroup
 FROM WizzardDeposits) as K
 GROUP BY AgeGroup 
 
-
 --PO10
-
 
 SELECT LEFT(FirstName,1) FROM WizzardDeposits
 WHERE DepositGroup='Troll Chest'
@@ -107,7 +96,6 @@ SELECT DepartmentID, MIN(Salary) AS MinimumSalary FROM Employees
 WHERE DepartmentID IN (2,5,7) AND HireDate>'2000-01-01'
 GROUP BY DepartmentID
 
-
 --PO15
 
 SELECT * FROM Employees
@@ -128,13 +116,11 @@ WHERE DepartmentID=1
 SELECT DepartmentID,AVG(Salary) AS AverageSalary FROM NewTable
 GROUP BY DepartmentID
 
-
 --PO16
 
 SELECT DepartmentID,MAX(Salary) AS MaxSalary FROM Employees
 GROUP BY DepartmentID
 HAVING MAX(Salary) NOT BETWEEN 30000 AND 70000
-
 
 --PO17
 
@@ -151,8 +137,5 @@ SELECT DepartmentID, Salary FROM
 GROUP BY DepartmentID,Salary
    ) AS K
 WHERE SalaryRanked=3
-
-
-
 
   

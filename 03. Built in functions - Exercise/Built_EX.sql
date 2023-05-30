@@ -35,7 +35,6 @@ ORDER BY [Name]
 
 --PO7
 
-
 SELECT * FROM Towns
 WHERE [Name] NOT LIKE '[RBD]%'
 ORDER BY [Name]
@@ -46,7 +45,6 @@ CREATE VIEW V_EmployeesHiredAfter2000 AS
 SELECT FirstName,LastName FROM Employees
 WHERE YEAR(HireDate)>2000
 
-
 --PO9
 
 SELECT FirstName,LastName FROM Employees
@@ -54,13 +52,11 @@ WHERE LEN(LastName)=5
 
 --PO10
 
-
 SELECT EmployeeID, FirstName,LastName,Salary, DENSE_RANK() OVER (PARTITION BY Salary ORDER BY EmployeeID) AS 'Rank' FROM Employees
 WHERE Salary BETWEEN 10000 AND 50000
 ORDER BY Salary DESC
 
 --PO11
-
 
 SELECT * 
 FROM
@@ -68,7 +64,6 @@ FROM
 WHERE Salary BETWEEN 10000 AND 50000) AS MyTable
 WHERE Rank=2
 ORDER BY Salary DESC
-
 
 --PO12 
 
@@ -78,9 +73,7 @@ SELECT CountryName,IsoCode FROM Countries
 WHERE CountryName LIKE '%a%a%a%'
 ORDER BY IsoCode
 
-
 --PO13
-
 
 SELECT PeakName,RiverName, LOWER(CONCAT(PeakName,'',SUBSTRING(RiverName,2,LEN(RiverName)))) AS 'Mix' FROM Peaks, Rivers
 WHERE RIGHT(PeakName,1)=LEFT(RiverName,1)
@@ -106,9 +99,7 @@ SELECT Username,IpAddress FROM Users
 WHERE IpAddress LIKE '___.1%.%.___'
 ORDER BY Username
 
-
 --PO17
-
 
 SELECT 
 Name,
@@ -128,8 +119,6 @@ END AS 'Duration'
 
 FROM Games
 ORDER BY [Name], Duration,'Part of the Day'
-
-
 
 --PO18
 

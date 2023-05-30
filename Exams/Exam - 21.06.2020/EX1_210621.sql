@@ -180,30 +180,22 @@ ORDER BY r.Price DESC)
 IF(@FoundRooms IS NULL)
 RETURN 'No rooms available'
 
-
 DECLARE @RoompPrise DECIMAL(15,2) = (SELECT Price FROM Rooms WHERE Id=@FoundRooms)
-
 
 DECLARE @RoomType VARCHAR(50) =(SELECT Type FROM Rooms WHERE Id=@FoundRooms)
 
-						
 DECLARE @BedsCount INT = (SELECT Beds FROM Rooms WHERE Id=@FoundRooms)
 
 DECLARE @BaseRate DECIMAL(15,2) = (SELECT BaseRate FROM Hotels WHERE Id=@HotelId)
 
 DECLARE @TotalCount DECIMAL(15,2) = (@BaseRate+@RoompPrise)*@People
 
-
- RETURN CONCAT('Room ', @FoundRooms, ': ',@RoomType, ' (',@BedsCount, ' beds', ') - $',@TotalCount)
+RETURN CONCAT('Room ', @FoundRooms, ': ',@RoomType, ' (',@BedsCount, ' beds', ') - $',@TotalCount)
 
 END
 SELECT dbo.udf_GetAvailableRoom(112, '2011-12-17', 2)
 
-
-
 --PO12
-
-
 
 CREATE PROC usp_SwitchRoom(@TripId INT, @TargetRoomId INT)
 AS
@@ -224,15 +216,9 @@ THROW 50001,'Target room is in another hotel!',1
 IF(@SumBeds<@TripsAccounts)
 THROW 50002,'Not enough beds in target room!',1
 
-
 UPDATE Trips
 SET RoomId=@TargetRoomId
 WHERE Id=@TripId
 
 EXEC usp_SwitchRoom 10, 8
-
-
-
-
-
 

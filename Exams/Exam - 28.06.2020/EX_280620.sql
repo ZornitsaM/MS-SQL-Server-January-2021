@@ -45,7 +45,6 @@ CREATE TABLE Journeys
  SpaceshipId INT FOREIGN KEY REFERENCES Spaceships(Id),
  )
 
-
  CREATE TABLE TravelCards
 (
  Id INT PRIMARY KEY IDENTITY,
@@ -60,7 +59,6 @@ CREATE TABLE Journeys
 
  INSERT INTO Planets
  VALUES ('Mars'),('Earth'),('Jupiter'),('Saturn')
-
 
  INSERT INTO Spaceships
  VALUES ('Golf','VW',3),('WakaWaka','Wakanda',4),('Falcon9','SpaceX',1),('Bed','Vidolov',6)
@@ -93,7 +91,6 @@ WHERE Id IN(1,2,3);
 
 SELECT * FROM Journeys
 
-
 --PO5
 
 SELECT * FROM Journeys
@@ -116,7 +113,6 @@ JOIN TravelCards tc ON C.Id=tc.ColonistId
 JOIN Journeys j ON tc.JourneyId=j.Id
 WHERE j.Id IN (5,15)
 
-
 --PO8
 
 SELECT s.Name, s.Manufacturer FROM Spaceships s
@@ -126,18 +122,13 @@ JOIN Colonists cc ON cc.Id=tc.ColonistId
 GROUP BY s.Name,s.Manufacturer
 ORDER BY s.Name
 
-
-
-
 --PO9
-
 
 SELECT PlanetName, COUNT(PlanetName) AS JourneysCount FROM (SELECT p.Name PlanetName,j.JourneyStart as JourneysCount FROM Planets p
 JOIN Spaceports sp ON p.Id=sp.PlanetId
 JOIN Journeys j ON j.DestinationSpaceportId=SP.Id) AS M
 GROUP BY PlanetName
 ORDER BY JourneysCount DESC, PlanetName
-
 
 SELECT p.Name, COUNT(j.JourneyStart) FROM Planets p
 JOIN Spaceports sp ON p.Id=sp.PlanetId
@@ -152,7 +143,6 @@ DENSE_RANK() OVER(PARTITION BY (JobDuringJourney) ORDER BY c.BirthDate) AS JobRa
 JOIN TravelCards tc ON c.Id=tc.ColonistId) AS K
 WHERE JobRank=2
 GROUP BY JobDuringJourney,FullName,JobRank
-
 
 --PO11
 

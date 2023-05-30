@@ -10,7 +10,6 @@ Id INT PRIMARY KEY,
 Age INT
 )
 
-
 CREATE TABLE Towns
 (
  Id INT PRIMARY KEY,
@@ -52,7 +51,6 @@ VALUES ('Ivan',456,2.1,65.2,'m','1996-10-10','Nice person'),('Mimi',16165165,1.5
 ('Stefi',15616,2.1,45.2,'f','1999-10-10','Pleasant person'), ('Stoyan',1665,2.3,65.7,'m','1996-10-12','Nice person'),
 ('Mario',15165,1.75,75.6,'m','1989-10-10','Nice person')
 
-
 --PO8
 
 CREATE TABLE Users
@@ -79,8 +77,6 @@ ADD CONSTRAINT PK_User PRIMARY KEY (Id, Username)
 
 --PO13
 
-
-
 CREATE DATABASE Movies
  
 CREATE TABLE Directors
@@ -96,7 +92,6 @@ CREATE TABLE Genres
  GenreName NVARCHAR(30) NOT NULL,
  Notes NVARCHAR(200),
  )
-
  
 CREATE TABLE Categories
 (
@@ -117,7 +112,6 @@ CREATE TABLE Movies
  Rating FLOAT(1),
   Notes NVARCHAR(200),
 )
-
 
 INSERT INTO Directors
 VALUES('Ivan','Good person'), ('Svetla','Beautiful person'), ('Momi','Nice person'), ('Sisi','Good person'), ('Bobi','Awful person')
@@ -165,8 +159,6 @@ CREATE TABLE Cars
  Available BIT NOT NULL
 )
 
-
-
 CREATE TABLE Employees
 (
  Id INT PRIMARY KEY IDENTITY NOT NULL,
@@ -187,9 +179,6 @@ CREATE TABLE Customers
  Notes NVARCHAR(300)
 )
 
-
-
-
 CREATE TABLE RentalOrders
 (
  Id INT PRIMARY KEY IDENTITY NOT NULL,
@@ -209,7 +198,6 @@ CREATE TABLE RentalOrders
  Notes NVARCHAR(15) NOT NULL,
 
 )
-
 --•	Categories (Id, CategoryName, DailyRate, WeeklyRate, MonthlyRate, WeekendRate)
 --•	Cars (Id, PlateNumber, Manufacturer, Model, CarYear, CategoryId, Doors, Picture, Condition, Available)
 --•	Employees (Id, FirstName, LastName, Title, Notes)
@@ -224,7 +212,6 @@ DROP COLUMN Available
 
 ALTER TABLE Cars
 ADD Available CHAR(10)
-
 
 INSERT INTO Cars
 VALUES ('CA1884CV', 'VW','Audi','2000',1,4,6561651,'new','yes'), ('CA1854CV', 'VW','VW','1996',1,4,65498651,'new','yes'),
@@ -241,7 +228,6 @@ DROP COLUMN ZIPCode
 ALTER TABLE Customers
 ADD ZIPCode CHAR(15)
 
-
 INSERT INTO Customers
 VALUES ('FDVDFVDFV', 'Ivan Ivanov','23 street','Plovdiv','4589','Nice'),
 ('dfdfbdf', 'Stoyan Ivanov','26 street','Sofia','5623','Nice'),
@@ -253,7 +239,6 @@ DROP COLUMN TotalDays
 ALTER TABLE RentalOrders
 ADD TotalDays INT NOT NULL
 
-
 INSERT INTO RentalOrders
 VALUES (1,2,3,0.25,15,20000,20015,'2000-10-01','2005-10-10',0.22,0.55,'bought','Perfect',200),
 (1,3,2,0.25,15,20000,20015,'2000-10-01','2005-10-10',0.22,0.55,'bought','Perfect',200),
@@ -262,6 +247,7 @@ VALUES (1,2,3,0.25,15,20000,20015,'2000-10-01','2005-10-10',0.22,0.55,'bought','
 SELECT * FROM RentalOrders
 
 --PO15
+
 CREATE DATABASE Hotel
 USE Hotel
 
@@ -429,8 +415,6 @@ INSERT INTO Towns
 VALUES('Sofia'),('Plovdiv'),('Varna'),('Burgas')
 INSERT INTO Departments
 VALUES ('Engineering'), ('Sales'), ('Marketing'), ('Software Development'), ('Quality Assurance')
-
-
 
 INSERT INTO Employees (FirstName,MiddleName,LastName,JobTitle,DepartmentId,HireDate,Salary)
 VALUES ('Ivan','Ivanov','Ivanov','.NET Developer',4,'2013-02-01',3500.00),

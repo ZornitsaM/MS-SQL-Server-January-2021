@@ -19,7 +19,6 @@ CREATE TABLE Hotels
  BaseRate DECIMAL(10,2)
 )
 
-
 CREATE TABLE Rooms   
 (
  Id INT PRIMARY KEY IDENTITY,
@@ -50,7 +49,6 @@ CREATE TABLE Accounts
  BirthDate DATE NOT NULL,
  Email NVARCHAR(50) NOT NULL UNIQUE
 )
-
 
 CREATE TABLE AccountsTrips    
 (
@@ -108,9 +106,7 @@ GROUP BY c.Name,h.Id) as K
 GROUP BY City
 ORDER BY COUNT(*) DESC, City
 
-
 --PO7
-
 
 SELECT AccountId,FullName, MAX(DayDuration) AS LongestTrip, MIN(DayDuration) AS ShortestTrip FROM(
 SELECT AccountId,a.FirstName+' '+a.LastName as FullName,t.ArrivalDate,t.ReturnDate,ABS(DATEDIFF(day,t.ReturnDate,t.ArrivalDate)) AS DayDuration FROM AccountsTrips at
@@ -120,15 +116,12 @@ WHERE t.CancelDate IS NULL and A.MiddleName IS NULL) AS K
 GROUP BY AccountId,FullName
 ORDER BY LongestTrip DESC,ShortestTrip
 
-
 --PO8
-
 
 SELECT TOP(10) c.Id,c.Name,c.CountryCode,COUNT(a.Id) as Accounts FROM Accounts a
 JOIN Cities c ON a.CityId=c.Id
 GROUP BY c.Id,c.Name,c.CountryCode
 ORDER BY COUNT(a.Id) DESC
-
 
 --PO9
 
@@ -159,14 +152,11 @@ JOIN Hotels h ON h.Id=r.HotelId
 JOIN Cities c ON c.Id=h.CityId
 ORDER BY FullName,t.Id
 
-
 --PO11
-
 
 SELECT * FROM Trips
 SELECT * FROM Rooms
 SELECT * FROM Hotels
-
 
 CREATE FUNCTION udf_GetAvailableRoom (@HotelId INT, @Date DATE, @People INT)
 RETURNS VARCHAR(MAX)
@@ -198,13 +188,11 @@ RETURN CONCAT('Room ', @RoomId, ': ', @RoomdType, ' (', @Beds, ' beds', ') - $',
 
 END
 
-
 --PO12
 
 SELECT * FROM Trips
 SELECT * FROM Rooms
 SELECT * FROM Hotels
-
 
 CREATE PROC usp_SwitchRoom(@TripId INT, @TargetRoomId INT)
 AS

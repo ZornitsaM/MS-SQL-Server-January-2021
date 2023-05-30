@@ -41,6 +41,7 @@ SELECT * FROM Employees
 ORDER BY Salary DESC,FirstName ASC,LastName DESC,MiddleName ASC
 
 --PO16
+
 USE SoftUni
 
 CREATE VIEW V_EmployeesSalaries AS
@@ -59,7 +60,6 @@ SELECT DISTINCT JobTitle FROM Employees
 
 SELECT TOP(10) ProjectID,[Name],[Description],StartDate,EndDate FROM Projects
 ORDER BY StartDate,[Name]
-
 
 SELECT * FROM Projects
 
@@ -94,7 +94,6 @@ ORDER BY Population DESC,CountryName
 SELECT * FROM Countries
 SELECT CountryName,CountryCode, IIF(CurrencyCode='EUR','Euro','Not Euro') AS [Currency] FROM Countries
 ORDER BY CountryName
-
 
 --PO25
 

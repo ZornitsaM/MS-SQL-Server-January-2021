@@ -39,7 +39,6 @@ CREATE TABLE Feedbacks
 	CustomerId INT FOREIGN KEY REFERENCES Customers(Id),
 )
 
-
 CREATE TABLE Distributors
 (
 	Id INT PRIMARY KEY IDENTITY,
@@ -85,6 +84,7 @@ VALUES('Francoise',	'Rautenstrauch',15,	'M','0195698399',5),
 ('Josefa',	'Opitz',43,	'F','0197887645',17)
 
 --PO3
+
 SELECT * FROM Ingredients
 SELECT * FROM Distributors
 ORDER BY Name
@@ -98,7 +98,6 @@ SET OriginCountryId=14
 WHERE OriginCountryId=8
 
 --PO4
-
 
 DELETE FROM Feedbacks
 WHERE CustomerId=14 OR ProductId=5
@@ -146,7 +145,6 @@ ORDER BY DistributorName,IngredientName,ProductName
 ) AS K
 WHERE AverageRate BETWEEN 5 AND 8
 
-
 --PO10
 
 SELECT CountryName,DisributorName FROM (
@@ -164,8 +162,3 @@ CREATE VIEW v_UserWithCountries
 AS
 SELECT c.FirstName+' '+c.LastName as CustomerName,c.Age,c.Gender,cc.Name as CountryName FROM Customers c
 JOIN Countries cc ON c.CountryId=cc.Id
-
---PO12
-
-
-

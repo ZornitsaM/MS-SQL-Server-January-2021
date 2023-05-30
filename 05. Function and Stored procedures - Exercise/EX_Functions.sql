@@ -1,5 +1,4 @@
 
-
 --PO1
 
 USE SoftUni
@@ -14,16 +13,12 @@ EXEC dbo.sp_GetEmployeesSalaryAbove35000
 
 --PO2
 
-
 CREATE PROC usp_GetEmployeesSalaryAboveNumber @Number DECIMAL(18,4)
 AS
   SELECT FirstName,LastName FROM Employees
   WHERE Salary>=@Number
 
-
-  --PO3
-
-  
+--PO3
 
   CREATE PROC usp_GetTownsStartingWith (@Word NVARCHAR(50))
   AS
@@ -34,8 +29,7 @@ AS
 
   EXEC usp_GetTownsStartingWith 'b'
 
-  --PO4
-
+--PO4
 
   CREATE PROC usp_GetEmployeesFromTown (@Name NVARCHAR(100))
   AS
@@ -44,7 +38,6 @@ AS
   JOIN Towns t ON t.TownID=a.TownID
   WHERE t.Name=@Name
   ORDER BY e.EmployeeID
-
 
 --PO5
 
@@ -64,7 +57,6 @@ END
 SELECT Salary, dbo.ufn_GetSalaryLevel(Salary) as 'Salary Level' FROM Employees
 
 --PO6
-
 
 CREATE PROC usp_EmployeesBySalaryLevel (@Level VARCHAR(15))
 AS
@@ -94,9 +86,7 @@ BEGIN
 
 END
 
-
 --PO9
-
 
 USE Bank
 
@@ -105,7 +95,6 @@ AS
 SELECT ah.FirstName+' '+ah.LastName as [Full Name] FROM AccountHolders ah
 
 EXEC dbo.usp_GetHoldersFullName
-
 
 --PO10
 
@@ -119,9 +108,5 @@ group by a.AccountHolderId,ah.Firstname,ah.Lastname
 HAVING SUM(Balance)>=@Number
 ) AS AK
 ORDER BY Firstname, Lastname
-
-
-
---PO11
 
 

@@ -32,7 +32,6 @@ ADD PRIMARY KEY(PassportID)
 ALTER TABLE Persons
 ADD FOREIGN KEY (PassportID) REFERENCES Passports(PassportID)
 
-
 CREATE TABLE Models
 (
  ModelID INT NOT NULL IDENTITY(101,1),
@@ -62,7 +61,6 @@ CREATE TABLE Models
  ALTER TABLE Models
  ADD FOREIGN KEY(ManufacturerID) REFERENCES Manufacturers(ManufacturerID)
 
-
  CREATE TABLE Students
  (
  StudentID INT NOT NULL IDENTITY,
@@ -80,7 +78,6 @@ CREATE TABLE Models
   StudentID INT NOT NULL,
   ExamID INT NOT NULL,
  )
-
 
  INSERT INTO Students
  VALUES ('Mila'),('Toni'), ('Ron')
@@ -121,7 +118,6 @@ ADD PRIMARY KEY(TeacherID)
 ALTER TABLE Teachers
 ADD FOREIGN KEY (ManagerID) REFERENCES Teachers(TeacherID)
 
-
 CREATE DATABASE OnlineStore
 USE OnlineStore
 
@@ -130,7 +126,6 @@ CREATE TABLE Cities
 CityID INT PRIMARY KEY NOT NULL,
 [Name] VARCHAR(50) NOT NULL
 )
-
 
 CREATE TABLE ItemTypes
 (
@@ -171,7 +166,6 @@ CONSTRAINT FK_OrderItems
 FOREIGN KEY(OrderID) REFERENCES Orders(OrderID), FOREIGN KEY(ItemID) REFERENCES Items(ItemID)
 )
 
-
 CREATE DATABASE SoftUni
 USE SoftUni
 
@@ -205,7 +199,6 @@ CREATE TABLE Payments
  FOREIGN KEY(StudentID) REFERENCES Students(StudentID)
 )
 
-
 CREATE TABLE Agenda
 (
 StudentID INT NOT NULL,
@@ -215,8 +208,6 @@ CONSTRAINT FK_Agenda
 FOREIGN KEY(StudentID) REFERENCES Students(StudentID),
 FOREIGN KEY(SubjectID) REFERENCES Subjects(SubjectID)
 )
-
---PO9
 
 USE Geography
 

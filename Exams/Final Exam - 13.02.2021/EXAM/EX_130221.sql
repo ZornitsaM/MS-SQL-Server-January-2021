@@ -1,5 +1,4 @@
 
-
 CREATE DATABASE Bitbucket
 USE Bitbucket
 DROP DATABASE Bitbucket
@@ -95,7 +94,6 @@ WHERE Id=3
 DELETE FROM Issues
 WHERE RepositoryId = (SELECT Id FROM Repositories WHERE Name='Softuni-Teamwork')
 
-
 --PO5
 
 SELECT Id,Message,RepositoryId,ContributorId FROM Commits
@@ -115,7 +113,6 @@ ORDER BY i.Id DESC,i.AssigneeId
 
 --PO8
 
-
 SELECT Id,Name, CONVERT(VARCHAR(30),Size)+'KB' AS Size FROM Files f
 WHERE f.Id NOT IN (
     SELECT DISTINCT ParentId 
@@ -123,6 +120,7 @@ WHERE f.Id NOT IN (
 
 SELECT * FROM Files
 ORDER BY ParentId
+
 --PO9
 
 SELECT TOP(5) r.Id, r.Name, COUNT(c.Id) as Commits FROM RepositoriesContributors rc
@@ -141,7 +139,6 @@ ORDER BY AVG(f.Size) DESC,u.Username
 
 --PO11
 
-
 CREATE FUNCTION udf_AllUserCommits(@username VARCHAR(30)) 
 RETURNS INT
 AS
@@ -155,9 +152,7 @@ END
 
 SELECT dbo.udf_AllUserCommits('UnderSinduxrein')
 
-
 --PO12
-
 
 CREATE PROC usp_SearchForFiles(@fileExtension VARCHAR(20))
 AS
@@ -166,4 +161,3 @@ WHERE RIGHT(Name,LEN(@fileExtension))=@fileExtension
 ORDER BY Id,Name,Size DESC
 
 EXEC usp_SearchForFiles 'txt'
-

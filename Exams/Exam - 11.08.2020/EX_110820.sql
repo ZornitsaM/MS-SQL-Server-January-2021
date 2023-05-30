@@ -39,7 +39,6 @@ CREATE TABLE Feedbacks
 	CustomerId INT FOREIGN KEY REFERENCES Customers(Id)
 )
 
-
 CREATE TABLE Distributors
 (
 	Id INT PRIMARY KEY IDENTITY,
@@ -48,7 +47,6 @@ CREATE TABLE Distributors
 	Summary	NVARCHAR(200) NOT NULL,	
 	CountryId INT FOREIGN KEY REFERENCES Countries(Id)
 )
-
 
 CREATE TABLE Ingredients
 (
@@ -87,7 +85,6 @@ VALUES ('Francoise','Rautenstrauch',15,	'M','0195698399',5),
 ('Hiu','Portaro',25,'M','0068277755',16),
 ('Josefa','Opitz',43,'F','0197887645',17)
 
-
 --PO3
     
 UPDATE Ingredients
@@ -114,12 +111,10 @@ ORDER BY Price DESC,Name
 
 --PO6
 
-
 SELECT f.ProductId,f.Rate,f.Description,c.Id,c.Age,c.Gender FROM Feedbacks f
 JOIN Customers c ON f.CustomerId=c.Id
 WHERE f.Rate<5.0
 ORDER BY f.ProductId DESC,f.Rate
-
 
 --PO7
 
@@ -148,7 +143,6 @@ GROUP BY i.Name,d.Name,p.Name) AS K
 WHERE AverageRate BETWEEN 5 AND 8
 ORDER BY DistributorName,IngredientName,ProductName
 
-
 --PO10
 
 SELECT CountryName, DisributorName FROM (
@@ -167,7 +161,4 @@ CREATE VIEW v_UserWithCountries
 AS
 SELECT cc.FirstName+' '+cc.LastName as CustomerName,cc.Age,cc.Gender,c.Name FROM Customers cc
 JOIN Countries c ON cc.CountryId=c.Id
-
---PO12
-
 
